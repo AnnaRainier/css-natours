@@ -1,0 +1,70 @@
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba($color-black, .1);
+  background-color: rgba($color-white, .6);
+  border-radius: 3px;
+  padding: 6rem;
+  padding-left: 9rem;
+  font-size: $default-font-size;
+  transform: skewX(-12deg);
+
+  & > * {
+    transform: skewX(12deg);
+    //this is a direct child selector, transforms the direct child with skew in the opposite position
+    //to make a content inside of a block look normal, not skewed
+  }
+
+  &__shape {
+    width: 15rem;
+    height: 15rem;
+    float: left;
+    shape-outside: circle(50% at 50% 50%);//radius, then pointing to center of the circle (can be not center)
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    //shape-outside works with floats only, if the element has defined dimensions (width and height)
+    //in safari it works only with webkit prefix
+
+    clip-path: circle(50% at 50% 50%);
+    -webkit-clip-path: circle(50% at 50% 50%);
+
+    transform: translateX(-3rem) skewX(12deg);//this is better approach to add spacing to floated elements
+    //so we move block on it's x axis 3rems right
+    position: relative;
+  }
+
+  &__img {
+    height: 100%;
+    transform: translateX(-4rem) scale(1.4);
+    transition: 0.5s all;
+  }
+
+  &__text {
+
+  }
+
+  &__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    color: $color-white;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    text-align: center;
+    opacity: 0;
+    transition: 0.5s all;
+    backface-visibility: hidden;
+    //backface visibility removes small shaking when animating elements
+  }
+
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover &__img {
+    transform: translateX(-4rem) scale(1);
+    filter: blur(3px) brightness(80%);
+  }
+}
+

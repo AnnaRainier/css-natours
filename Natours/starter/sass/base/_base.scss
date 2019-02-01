@@ -1,0 +1,21 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  //overflow-x: hidden;
+  //box-shadow: inherit;
+}
+
+html {
+  //that defines what 1 rem is
+  font-size: 62.5%;
+  /*
+  calculating by dividing desired fontsize by basic browser fontsize, 10px/16px
+  if we set default (root) font size in pixels, we'll disable user from ability of resizing font size in browser settings
+  */
+}
+
+body {
+    box-sizing: border-box;
+}
